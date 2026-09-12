@@ -8,11 +8,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <!-- #keywords -->
-    <meta name="keywords" content="boot, Bootstrap, Protfolily HTML Template" />
+    <meta name="keywords" content="boot, Bootstrap, Protfolily" />
     <!-- #description -->
     <meta
       name="description"
-      content="Protfolily - Responsive Personal Portfolio & Resume HTML Template"
+      content=""
     />
     <!-- #title -->
     <title>Ebi Bharathi Personal Portfolio</title>
@@ -260,7 +260,7 @@
         >
           <a href="index.html" class="side-icon bgn2-color brn4">
             <svg
-              xmlns="http://www.w3.org/2000/svg"
+              xmlns=""
               width="11"
               height="15"
               viewBox="0 0 11 15"
@@ -436,26 +436,7 @@
                 <a href="#" class="p1-color">ebibharathi@gmail.com</a> .Want to
                 get connected? Follow me on the social channels below.
               </p>
-              <div
-                class="d-flex flex-wrap justify-content-center gap-2 align-items-center mt-4"
-              >
-                <a href="javascript:void(0)" class="social-icon">
-                  <i class="ph ph-facebook-logo p1-color"></i>
-                </a>
-                <a href="javascript:void(0)" class="social-icon">
-                  <i class="ph ph-instagram-logo p1-color"></i>
-                </a>
-                <a href="javascript:void(0)" class="social-icon">
-                  <i class="ph ph-x-logo p1-color"></i>
-                </a>
-                <a href="javascript:void(0)" class="social-icon">
-                  <i class="ph ph-linkedin-logo p1-color"></i>
-                </a>
-                
-                <a href="javascript:void(0)" class="social-icon">
-                  <i class="ph ph-youtube-logo p1-color"></i>
-                </a>
-              </div>
+              
             </div>
           </div>
 
@@ -468,7 +449,7 @@
                 </h2>
               </div>
               <p class="fs-seven n4-color mt-2 mt-md-4">
-                Available for Freelance Web Design, Graphic Design & Video Editing Projects
+                Ping me I'll be on the spot !
               </p>
             </div>
 
@@ -525,8 +506,7 @@
                 <h2 class="display-four n5-color fw-semibold">Get In Touch</h2>
               </div>
               <p class="fs-seven n4-color mt-2 mt-md-4">
-                I'm always open to discussing new projects, creative ideas, 
-                and freelance opportunities. Feel free to contact me anytime.
+                I'm always open to discussing new projects, creative ideas, Feel free to contact me anytime.
               </p>
             </div>
             <form
@@ -677,7 +657,7 @@
 
 (function() {
     emailjs.init({
-        publicKey: "YOUR_PUBLIC_KEY",
+        publicKey: "7txWfE4HvSt4UPfqL",
     });
 })();
 
@@ -687,9 +667,16 @@ document
 
     event.preventDefault();
 
+    const form = document.getElementById("contact-form");
+    const button = document.getElementById("contact-submit-btn");
+
+    // Change button while sending
+    button.innerText = "Sending...";
+    button.disabled = true;
+
     emailjs.send(
-        "YOUR_SERVICE_ID",
-        "YOUR_TEMPLATE_ID",
+        "service_5vgyegv",
+        "template_khebe2k",
         {
             name: document.getElementById("name").value,
             email: document.getElementById("email").value,
@@ -700,20 +687,42 @@ document
     )
     .then(function() {
 
-        document.getElementById("success-message").style.display = "block";
+        // Reset button
+        button.innerText = "Send Message";
+        button.disabled = false;
 
-        document.getElementById("contact-form").reset();
+        // Clear form
+        form.reset();
+
+        // Success popup
+        Swal.fire({
+            icon: "success",
+            title: "Message Sent Successfully! 🎉",
+            text: "Thank you for reaching out. I'll contact you shortly.",
+            confirmButtonText: "Okay"
+        });
 
     })
     .catch(function(error) {
 
         console.log(error);
 
-        alert("Failed to send message. Please try again.");
+        // Reset button
+        button.innerText = "Send Message";
+        button.disabled = false;
+
+        // Error popup
+        Swal.fire({
+            icon: "error",
+            title: "Oops!",
+            text: "Failed to send your message. Please try again.",
+            confirmButtonText: "Okay"
+        });
 
     });
 
 });
+
 
 </script>
   </body>
